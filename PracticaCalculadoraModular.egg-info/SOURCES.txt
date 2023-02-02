@@ -1,0 +1,10 @@
+setup.py
+PracticaCalculadoraModular.egg-info/PKG-INFO
+PracticaCalculadoraModular.egg-info/SOURCES.txt
+PracticaCalculadoraModular.egg-info/dependency_links.txt
+PracticaCalculadoraModular.egg-info/top_level.txt
+calculadora/calculadoraModular.py
+calculadora/calculadoraModular/__init__.py
+calculadora/calculadoraModular/calculadoraBotoneraModular.py
+calculadora/calculadoraModular/calculadoraModularMostrarPantalla.py
+calculadora/calculadoraModular/calculadoraModularPulsaciones.py

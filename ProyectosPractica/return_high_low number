@@ -1,0 +1,6 @@
+def high_and_low(numbers):
+    # ...
+    list_number = [int(x) for x in numbers.split()]
+    return "{} {}".format(max(list_number),min(list_number))
+
+print(high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
