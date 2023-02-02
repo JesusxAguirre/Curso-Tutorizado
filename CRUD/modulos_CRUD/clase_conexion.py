@@ -1,7 +1,7 @@
 import sqlite3
 from tkinter import *
 from tkinter import messagebox as msg
-
+import sys
 
 class Conexion:
     def __init__(self) -> None:
@@ -31,10 +31,12 @@ class Conexion:
 
     def salir(self):
         try:
-            self.cursor.close()
-            self.conexion.close()
-
-            msg.showinfo(message="Conexion cerrada correctamente")
+            valor_salir =msg.askquestion("Salir", "¿Desea salir de la aplicacion?")
+            
+            if valor_salir:
+              self.cursor.close()
+              self.conexion.close()
+              sys.exit()
         except:
             msg.showerror(
                 message="No puedes cerrar la conexion sin que esta este inicializada"
