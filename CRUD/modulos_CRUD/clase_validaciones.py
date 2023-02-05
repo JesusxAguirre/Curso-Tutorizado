@@ -76,9 +76,11 @@ class Validaciones:
     def llamando_update(
         self, objeto_conexion, argumentos
     ) -> None:
+        elementos_len = (1 for x in argumentos if x != "")
         if (
             objeto_conexion.conexion and
-             str.isdigit in argumentos and len(argumentos) > 1
+             any(valor.isnumeric() for valor in argumentos) and 
+             elementos_len >1
         ):
 
             objeto_crud.update_user(objeto_conexion, argumentos)
@@ -88,7 +90,9 @@ class Validaciones:
                 msg.showerror(
                     message="Debes de conectar con la base de datos antes de realizar cualquier operacion"
                 )
-            elif not str.isdigit in argumentos:
+            elif any(valor.isnumeric() for valor in argumentos):
+                print( any(valor.isnumeric() for valor in argumentos))
+                print(argumentos)
                 msg.showerror(
                     message="Debes de indicar el id para poder actualizar el registro"
                 )
