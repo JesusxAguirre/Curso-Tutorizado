@@ -101,6 +101,7 @@ class Validaciones:
                     message="Debes enviar al menos un campo para actualizar")
 
     def llamando_delete(self, objeto_conexion, id):
+        id = id[0]
         if objeto_conexion.conexion and id != "":
             objeto_crud.delete_user(objeto_conexion, id)
 
