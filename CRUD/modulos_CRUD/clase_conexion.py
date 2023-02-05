@@ -42,7 +42,7 @@ class Conexion:
               self.conexion.close()
               sys.exit()
         except Exception as ex:
-            msg.showerror(message=ex)
+            #msg.showerror(message=ex)
             msg.showerror(
                 message="No puedes cerrar la conexion sin que esta este inicializada"
             )
