@@ -1,15 +1,17 @@
 import sqlite3
-from tkinter import *
 from tkinter import messagebox as msg
+from tkinter import simpledialog
 import sys
 
 class Conexion:
     def __init__(self) -> None:
         self.conexion = None
         self.cursor = None
+        self.BBDD = None
 
     def conectar_bd(self):
-        self.conexion = sqlite3.connect("CRUD/Usuarios")
+        self.BBDD = simpledialog.askstring("BBDD","Introduce el nombre de la base de datos")
+        self.conexion = sqlite3.connect(self.BBDD)
         self.cursor = self.conexion.cursor()
         try:
             self.cursor.execute(
