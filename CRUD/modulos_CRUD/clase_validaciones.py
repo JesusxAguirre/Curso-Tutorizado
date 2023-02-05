@@ -32,7 +32,7 @@ class Validaciones:
             )
         elif "DELETE" in argumentos:
             argumentos.remove("DELETE")
-            self.llamando_delete(objeto_conexion, id)
+            self.llamando_delete(objeto_conexion, argumentos)
 
     # funcion para llamar a la funcion de CREATE
     def llamando_create(
@@ -100,22 +100,20 @@ class Validaciones:
                 msg.showerror(
                     message="Debes enviar al menos un campo para actualizar")
 
-    def llamando_delete(self, objeto_conexion, Id):
-        if objeto_conexion.conexion and Id:
-            objeto_crud.delete_user(objeto_conexion, Id)
+    def llamando_delete(self, objeto_conexion, id):
+        if objeto_conexion.conexion and id != "":
+            objeto_crud.delete_user(objeto_conexion, id)
 
         else:
             if not objeto_conexion.conexion:
                 msg.showerror(
                     message="Debes de conectar con la base de datos antes de realizar cualquier operacion"
                 )
-            elif not id:
+            elif not id != "":
                 msg.showerror(
-                    message="Debes de indicar el id para poder actualizar el registro"
+                    message="Debes de indicar el id para poder eliminar el registro deseado"
                 )
-            else:
-                msg.showerror(
-                    message="Debes enviar al menos un campo para consultar")
+           
 
 
 objeto_validaciones = Validaciones()
