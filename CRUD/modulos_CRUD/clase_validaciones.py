@@ -10,51 +10,40 @@ class Validaciones:
         self,
         objeto_app,
         objeto_conexion,
-        id,
-        nombre,
-        password,
-        apellido,
-        direccion,
-        comentario,
-        consulta,
+        *args
     ):
-        if consulta == "CREATE":
+        argumentos = [*args]
+        if "CREATE" in argumentos:
+            argumentos.remove("CREATE")
             self.llamando_create(
-                objeto_conexion, nombre, password, apellido, direccion, comentario
+                objeto_conexion, argumentos
             )
-        elif consulta == "READ":
+        elif "READ" in argumentos:
+            argumentos.remove("READ")
             self.llamando_read(
                 objeto_app,
                 objeto_conexion,
-                id,
-                nombre,
-                password,
-                apellido,
-                direccion,
-                comentario,
+                argumentos
             )
-        elif consulta == "UPDATE":
+        elif "UPDATE" in argumentos:
+            argumentos.remove("UPDATE")
             self.llamando_update(
-                objeto_conexion, id, nombre, password, apellido, direccion, comentario
+                objeto_conexion, argumentos
             )
-        else:
+        elif "DELETE" in argumentos:
+            argumentos.remove("DELETE")
             self.llamando_delete(objeto_conexion, id)
 
     # funcion para llamar a la funcion de CREATE
     def llamando_create(
-        self, objeto_conexion, nombre, password, apellido, direccion, comentario
+        self, objeto_conexion, argumentos
     ):
-        # creando lista para pasarlelo a la clase crud
         if (
-            nombre
-            and password
-            and apellido
-            and direccion
-            and comentario
+            "" not in argumentos
             and objeto_conexion.conexion
         ):
-            datos = [nombre, password, apellido, direccion, comentario]
-            objeto_crud.create_user(objeto_conexion, datos)
+         
+            objeto_crud.create_user(objeto_conexion, argumentos)
         else:
             if not objeto_conexion.conexion:
                 msg.showerror(
@@ -70,50 +59,42 @@ class Validaciones:
         self,
         objeto_app,
         objeto_conexion,
-        id,
-        nombre,
-        password,
-        apellido,
-        direccion,
-        comentario,
+        argumentos
     ):
-        if objeto_conexion.conexion and (
-            id or nombre or password or apellido or direccion or comentario
-        ):
-            datos = [id, nombre, password, apellido, direccion, comentario]
-
-            objeto_crud.read_user(objeto_app, objeto_conexion, datos)
+        if objeto_conexion.conexion and len(argumentos) != 0:
+        
+            objeto_crud.read_user(objeto_app, objeto_conexion, argumentos)
         else:
             if not objeto_conexion.conexion:
                 msg.showerror(
                     message="Debes de conectar con la base de datos antes de realizar cualquier operacion"
                 )
             else:
-                msg.showerror(message="Debes enviar al menos un campo para consultar")
+                msg.showerror(
+                    message="Debes enviar al menos un campo para consultar")
 
     def llamando_update(
-        self, objeto_conexion, id, nombre, password, apellido, direccion, comentario
+        self, objeto_conexion, argumentos
     ) -> None:
         if (
-            objeto_conexion.conexion
-            and id
-            and (nombre or password or apellido or direccion or comentario)
+            objeto_conexion.conexion and
+             str.isdigit in argumentos and len(argumentos) > 1
         ):
-            datos = [id, nombre, password, apellido, direccion, comentario]
 
-            objeto_crud.update_user(objeto_conexion, datos)
+            objeto_crud.update_user(objeto_conexion, argumentos)
 
         else:
             if not objeto_conexion.conexion:
                 msg.showerror(
                     message="Debes de conectar con la base de datos antes de realizar cualquier operacion"
                 )
-            elif not id:
+            elif not str.isdigit in argumentos:
                 msg.showerror(
                     message="Debes de indicar el id para poder actualizar el registro"
                 )
             else:
-                msg.showerror(message="Debes enviar al menos un campo para consultar")
+                msg.showerror(
+                    message="Debes enviar al menos un campo para actualizar")
 
     def llamando_delete(self, objeto_conexion, Id):
         if objeto_conexion.conexion and Id:
@@ -129,7 +110,8 @@ class Validaciones:
                     message="Debes de indicar el id para poder actualizar el registro"
                 )
             else:
-                msg.showerror(message="Debes enviar al menos un campo para consultar")
+                msg.showerror(
+                    message="Debes enviar al menos un campo para consultar")
 
 
 objeto_validaciones = Validaciones()

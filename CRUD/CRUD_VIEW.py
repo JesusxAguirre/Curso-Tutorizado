@@ -183,7 +183,6 @@ class Interfaz(Frame):
             command=lambda: objeto_validaciones.validando_formulario(
                 App,
                 objeto_conexion,
-                self.ID.get(),
                 self.Nombre.get(),
                 self.Password.get(),
                 self.Apellido.get(),
@@ -241,11 +240,6 @@ class Interfaz(Frame):
                 App,
                 objeto_conexion,
                 self.ID.get(),
-                self.Nombre.get(),
-                self.Password.get(),
-                self.Apellido.get(),
-                self.Direccion.get(),
-                self.input_comentario.get("1.0", "end-1c"),
                 "DELETE",
             ),
         )

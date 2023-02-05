@@ -5,6 +5,7 @@ from tkinter import messagebox as msg
 class CRUD:
     def create_user(self, objeto_conexion, datos):
         try:
+            
             objeto_conexion.cursor.execute(
                 """INSERT INTO USUARIOS(NOMBRE_USUARIO,PASSWORD,APELLIDO,DIRECCION,COMENTARIOS) 
                                      VALUES(?,?,?,?,?)""",
