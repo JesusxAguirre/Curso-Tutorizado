@@ -76,11 +76,11 @@ class Validaciones:
     def llamando_update(
         self, objeto_conexion, argumentos
     ) -> None:
-        elementos_len = (1 for x in argumentos if x != "")
+        elementos_len = sum(1 for x in argumentos if x != "")
         if (
             objeto_conexion.conexion and
-             any(valor.isnumeric() for valor in argumentos) and 
-             elementos_len >1
+             any(valor.isnumeric() for valor in argumentos) and
+             elementos_len > 1
         ):
 
             objeto_crud.update_user(objeto_conexion, argumentos)
@@ -90,7 +90,7 @@ class Validaciones:
                 msg.showerror(
                     message="Debes de conectar con la base de datos antes de realizar cualquier operacion"
                 )
-            elif any(valor.isnumeric() for valor in argumentos):
+            elif not any(valor.isnumeric() for valor in argumentos):
                 print( any(valor.isnumeric() for valor in argumentos))
                 print(argumentos)
                 msg.showerror(
