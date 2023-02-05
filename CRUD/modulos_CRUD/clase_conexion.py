@@ -28,7 +28,8 @@ class Conexion:
 
             msg.showinfo(message="Base de datos creada con exito")
 
-        except:
+        except Exception as ex:
+            
             msg.showinfo(message="Conectado correctamente a la base de datos")
 
     def salir(self):
@@ -36,10 +37,12 @@ class Conexion:
             valor_salir =msg.askquestion("Salir", "¿Desea salir de la aplicacion?")
             
             if valor_salir:
+              
               self.cursor.close()
               self.conexion.close()
               sys.exit()
-        except:
+        except Exception as ex:
+            msg.showerror(message=ex)
             msg.showerror(
                 message="No puedes cerrar la conexion sin que esta este inicializada"
             )
