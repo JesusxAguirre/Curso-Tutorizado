@@ -4,7 +4,7 @@ from modulos_CRUD.clase_conexion import *
 from modulos_CRUD.clase_validaciones import *
 
 class Interfaz(Frame):
-    def __init__(self, raiz) -> None:
+    def __init__(self,raiz) -> None:
         #------------variables-----------#
         self.Nombre = StringVar()
         self.Password = StringVar()
@@ -14,16 +14,16 @@ class Interfaz(Frame):
 
         super().__init__(raiz,width=300,height=300)
         self.master = raiz
-        
-        self.pack()
         self.master.title("Aplicacion con CRUD")
+        self.pack()
         
-        self.iframe_botones = Frame(self)
+        self.iframe_botones = Frame(raiz)
         self.iframe_botones.pack()
+        
+        self.crear_widgets()
+        
         self.crear_barra_menu()
-
-        #self.crear_widgets()
-
+        
         self.botones_crud()
        
         
@@ -107,23 +107,23 @@ class Interfaz(Frame):
         menu_bar.add_cascade(label="Ayuda", menu=self.help_menu)
 
     def crear_widgets(self):
-        
-    
         # contruyendo los widgets
-        # labels
+        
         # id
+
         self.label_id = Label(self, text="ID:")
         self.label_id.grid(row=0, column=0, sticky="e",padx=10, pady=10)
 
         self.input_id = Entry(self, textvariable=self.ID)
         self.input_id.grid(row=0, column=1)
+
         # Nombre
         self.label_nombre = Label(
             self,
             text="Nombre: ",
             pady=10,
         )
-        self.label_nombre.grid(row=1, column=0, padx=20)
+        self.label_nombre.grid(row=1, column=0, sticky="e",padx=10, pady=10)
 
         self.input_nombre = Entry(
             self, textvariable=self.Nombre, fg="Red", justify=["right"]
@@ -132,7 +132,7 @@ class Interfaz(Frame):
 
         # password
         self.label_password = Label(self, text="Password: ", pady=10)
-        self.label_password.grid(row=2, column=0)
+        self.label_password.grid(row=2, column=0, sticky="e",padx=10, pady=10)
 
         self.input_password = Entry(
             self, textvariable=self.Password, show="*", justify=["left"]
@@ -141,21 +141,21 @@ class Interfaz(Frame):
 
         # apellido
         self.label_apellido = Label(self, text="Apellido: ", pady=10)
-        self.label_apellido.grid(row=3, column=0)
+        self.label_apellido.grid(row=3, column=0, sticky="e",padx=10, pady=10)
 
         self.input_apellido = Entry(self, textvariable=self.Apellido)
         self.input_apellido.grid(row=3, column=1)
 
         # direccion
         self.label_direccion = Label(self, text="Direccion: ", pady=10)
-        self.label_direccion.grid(row=4, column=0)
+        self.label_direccion.grid(row=4, column=0, sticky="e",padx=10, pady=10)
 
         self.input_direccion = Entry(self, textvariable=self.Direccion)
         self.input_direccion.grid(row=4, column=1)
 
         # comentario
         self.label_comentario = Label(self, text="Comentario: ", pady=10)
-        self.label_comentario.grid(row=5, column=0)
+        self.label_comentario.grid(row=5, column=0, sticky="e",padx=10, pady=10)
 
         self.input_comentario = Text(self, width=15, height=4)
         self.input_comentario.grid(row=5, column=1)
@@ -166,7 +166,8 @@ class Interfaz(Frame):
         self.scrolbar.grid(row=5, column=2, sticky="nsew")
 
     def botones_crud(self):
-         # botones
+
+        #botones
 
         # create
 
@@ -185,7 +186,7 @@ class Interfaz(Frame):
                 "CREATE",
             ),
         )
-        self.btn_create.grid(row=7, column=0, padx=10, pady=10)
+        self.btn_create.grid(row=7, column=0, sticky="e",padx=10, pady=10)
 
         # read
 
@@ -204,7 +205,7 @@ class Interfaz(Frame):
                 "READ",
             ),
         )
-        self.btn_read.grid(row=7, column=1, padx=10, pady=10)
+        self.btn_read.grid(row=7, column=1, sticky="e",padx=10, pady=10)
 
         # update
 
@@ -223,7 +224,7 @@ class Interfaz(Frame):
                 "UPDATE",
             ),
         )
-        self.btn_update.grid(row=7, column=2, padx=10, pady=10)
+        self.btn_update.grid(row=7, column=2, sticky="e",padx=10, pady=10)
 
         # delete
 
@@ -242,7 +243,7 @@ class Interfaz(Frame):
                 "DELETE",
             ),
         )
-        self.btn_delete.grid(row=7, column=3, padx=10, pady=10)
+        self.btn_delete.grid(row=7, column=3, sticky="e",padx=10, pady=10)
 
     def borrar_campos(self):
         self.ID.set("")
@@ -262,7 +263,6 @@ class Interfaz(Frame):
 
 root = Tk()
 
-
 App = Interfaz(root)
 
-root.mainloop()
+App.mainloop()

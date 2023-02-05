@@ -63,8 +63,8 @@ class CRUD:
             )
 
             objeto_app.Nombre.set(stmt[0])
-            objeto_app.Password.set(stmt[1])
-            objeto_app.Apellido.set(stmt[2])
+            objeto_app.Apellido.set(stmt[1])
+            objeto_app.Password.set(stmt[2])
             objeto_app.Direccion.set(stmt[3])
             objeto_app.input_comentario.insert(INSERT, [stmt[4]])
         except Exception as ex:
