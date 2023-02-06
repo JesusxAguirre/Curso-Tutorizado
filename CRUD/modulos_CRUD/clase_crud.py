@@ -7,8 +7,7 @@ class CRUD:
         try:
             
             objeto_conexion.cursor.execute(
-                """INSERT INTO USUARIOS(NOMBRE_USUARIO,PASSWORD,APELLIDO,DIRECCION,COMENTARIOS) 
-                                     VALUES(?,?,?,?,?)""",
+                """INSERT INTO USUARIOS VALUES(NULL,?,?,?,?,?)""",
                 datos,
             )
             objeto_conexion.conexion.commit()
