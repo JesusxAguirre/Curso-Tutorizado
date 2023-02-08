@@ -4,16 +4,18 @@ from flask import Flask,render_template,url_for
 
 app = Flask(__name__)
 
+empleados = ["Ana","Maria","Sandra"]
+
 
 @app.route("/")
 def index():
 
   return render_template("index.html")
 
-@app.route('/hello')
+@app.route('/hola-mundo')
 def hola_mundo():
 
-  return "hello.html"
+  return render_template("hello.html")
 
 """
 @app.route("/username/<username>")
