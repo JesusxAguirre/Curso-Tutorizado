@@ -12,6 +12,18 @@ def index():
 
   return render_template("index.html",numero_empleados=len(empleados))
 
+
+@app.route("/servicios")
+def servicios():
+
+  return render_template("servicios.html")
+
+@app.route("/productos")
+def productos():
+
+  return render_template("productos.html")
+
+
 @app.route('/hola-mundo')
 def hola_mundo():
 
