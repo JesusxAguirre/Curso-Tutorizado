@@ -1,6 +1,6 @@
 from flask import Flask,render_template,url_for
 import os
-#from markupsafe import escape
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -23,13 +23,9 @@ def get_usuario(nombre_usuario):
   return f"Bienvenido a la web {nombre_usuario}"
 
 
-
-
-
 if __name__ == "__main__":
   os.environ['FLASK_DEBUG']= "development"
   app.run(debug=True)
-
 
 
 """
