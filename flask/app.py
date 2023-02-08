@@ -34,12 +34,9 @@ def get_datos_usuarios(id,nombre_usuario):
   #return f"Estos son los datos del usuario. id-> {id}, nombre-> {nombre_usuario}"
   return render_template("usuarios/datos_usuarios.html",id=id,nombre_usuario=nombre_usuario)
 
-@app.route("/posts")
-@app.route("/posts/<int:n_post>")
-def post(n_post=0):
-
-  return f"este es el post numero {n_post}"
-
+@app.route("/contacto")
+def contacto():
+  return render_template("contacto.html")
 
 if __name__ == "__main__":
   os.environ['FLASK_DEBUG']= "development"

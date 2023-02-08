@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %} {% endblock %}</title>
   <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='bootstrap.min.css')}}">
 </head>
 <body>
   <ul id="barra">
     <li id="elem">Inicio</li>
     <li id="elem">Servicios</li>
     <li id="elem">Productos</li>
-    <li >Contactos</li>
+    <li><a href="{{url_for('contacto')}}"> Contactos</a></li>
 </ul>
 
   {% block content %}
