@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Datos de {{nombre_usuario}}</title>
-</head>
-<body>
-  Estos son los datos del usuario. <br> id: {{id}} <br> nombre: {{nombre_usuario}}
-  <br>
-  <a href="{{url_for('index')}}">Este link lleva devuetla al index</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} Datos de {{nombre_usuario}}{% endblock %}
+
+{% block content %} 
+
+Estos son los datos del usuario. <br> id: {{id}} <br> nombre: {{nombre_usuario}}
+
+<br>
+
+<a href="{{url_for('index')}}">Este link lleva devuetla al index</a>
+
+{% endblock %}">
+ 
