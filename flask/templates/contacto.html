@@ -4,5 +4,20 @@
 
 {% block content %} 
 <h1 style="text-align: center;">Esta es la pagina de contacto</h1>
+
+<form action="" method="post">
+  <label for="">Nombre: </label>
+  <input type="text" name="nombre" id="nombre" />
+  <br>
+  <label for="">Email: </label>
+  <input type="email" id="email" name="email" />
+  <br>
+  <label for="">Contraseña: </label>
+  <input type="password" id="password" name="password" />
+  <br>
+
+  <input type="submit" id="envio_formulario" name="envio_formulario" value="Enviar">
+
+</form>
 {% endblock %}
   
