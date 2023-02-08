@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index</title>
-</head>
-<body>
-  este es el index
+{% extends "base.html" %}
+
+{% block title %} Index {% endblock %}
+
+{% block content %} 
+este es el index
   <br>
 
   {{numero_empleados}}
@@ -19,6 +15,6 @@
   <a href="{{url_for('get_id_usuario',id_usuario=9)}}">Esto me lleva a la pagina de id del usuario</a>
   <br>
   <a href="{{url_for('get_datos_usuarios',id=9,nombre_usuario='Jesus')}}">Esto me lleva a la pagina de datos usuarios</a>
+{% endblock %}
+  
 
-</body>
-</html>

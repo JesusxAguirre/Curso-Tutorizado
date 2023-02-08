@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hola mundo</title>
+{% extends "base.html" %}
 
-</head>
-<body>
-  <h1 style="text-align: center; color: cornflowerblue;" >Hola mundo!</h1>
-</body>
-</html>
+{% block title %} Hola mundo {% endblock %}
+
+{% block content %} 
+<h1 style="text-align: center; color: rgb(74, 74, 240);" >Hola mundo</h1>
+{% endblock %}
