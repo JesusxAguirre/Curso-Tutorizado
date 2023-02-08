@@ -2,3 +2,16 @@ body{
     background-color: darkseagreen;
 
 }
+
+#barra{
+    margin: auto;
+    width: 600px;
+    list-style: none;
+    border-bottom: 1px   dotted yellow;
+    font-size: 2em;
+}
+
+#elem{
+    float: left; 
+    margin-right: 20px;
+}
