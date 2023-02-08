@@ -25,7 +25,9 @@ def get_usuario(nombre_usuario):
 @app.route("/usuarios_id/<int:id_usuario>")
 def get_id_usuario(id_usuario):
 
-  return f"Bienvenido a la web. usuario numero-> {id_usuario}"
+  #return f"Bienvenido a la web. usuario numero-> {id_usuario}"
+  return render_template("usuarios/usuarios.html",id_usuario=id_usuario)
+
 
 @app.route("/datos_usuarios/<int:id>/<string:nombre_usuario>")
 def get_datos_usuarios(id,nombre_usuario):
