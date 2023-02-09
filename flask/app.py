@@ -1,5 +1,7 @@
-from flask import Flask,render_template,url_for
+from flask import Flask,render_template,url_for, request, redirect
 import os
+
+
 #from markupsafe import escape
 
 app = Flask(__name__)
@@ -46,8 +48,13 @@ def get_datos_usuarios(id,nombre_usuario):
   #return f"Estos son los datos del usuario. id-> {id}, nombre-> {nombre_usuario}"
   return render_template("usuarios/datos_usuarios.html",id=id,nombre_usuario=nombre_usuario)
 
-@app.route("/contacto")
+@app.route("/contacto",methods=["GET","POST"])
 def contacto():
+  if request.method=="POST":
+    nombre=request.form["nombre"]
+    email=request.form["email"]
+    password=request.form["password"]
+    return redirect(url_for("index"))
   return render_template("contacto.html")
 
 if __name__ == "__main__":
