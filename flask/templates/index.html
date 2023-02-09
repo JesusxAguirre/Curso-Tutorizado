@@ -9,13 +9,13 @@
   {{numero_empleados}}
 
   <br>
-
-  <a href="{{url_for('hola_mundo')}}">Esto me lleva a la pagina de hola mundo</a>
-  <br>
-  <a href="{{url_for('get_id_usuario',id_usuario=9)}}">Esto me lleva a la pagina de id del usuario</a>
-  <br>
-  <a href="{{url_for('get_datos_usuarios',id=9,nombre_usuario='Jesus')}}">Esto me lleva a la pagina de datos usuarios</a>
-  
+  <div class="">
+    <a href="{{url_for('hola_mundo')}}">Esto me lleva a la pagina de hola mundo</a>
+    <br>
+    <a href="{{url_for('get_id_usuario',id_usuario=9)}}">Esto me lleva a la pagina de id del usuario</a>
+    <br>
+    <a href="{{url_for('get_datos_usuarios',id=9,nombre_usuario='Jesus')}}">Esto me lleva a la pagina de datos usuarios</a>
+  </div>
 {% endblock %}
   
 
