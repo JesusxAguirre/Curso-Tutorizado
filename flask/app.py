@@ -1,10 +1,14 @@
 from flask import Flask,render_template,url_for, request, redirect
 import os
+from forms import SignupForm
 
 
 #from markupsafe import escape
 
 app = Flask(__name__)
+
+app.config["SECRET_KEY"]='ASDADS;d\'12;e12];]d\sd;q2e]2;1edq][;esd1q]2[;d[ads]]'
+
 
 empleados = ["Ana","Maria","Sandra","Reina"]
 
@@ -50,12 +54,15 @@ def get_datos_usuarios(id,nombre_usuario):
 
 @app.route("/contacto",methods=["GET","POST"])
 def contacto():
-  if request.method=="POST":
-    nombre=request.form["nombre"]
-    email=request.form["email"]
-    password=request.form["password"]
+  form = SignupForm()
+  if form.validate_on_submit:
+    nombre=form.name.data
+    email=form.email.data
+    password=form.password.data
+
     return redirect(url_for("index"))
-  return render_template("contacto.html")
+  
+  return render_template("contacto.html",form=form)
 
 if __name__ == "__main__":
   os.environ['FLASK_DEBUG']= "development"
