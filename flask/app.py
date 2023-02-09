@@ -55,11 +55,14 @@ def get_datos_usuarios(id,nombre_usuario):
 @app.route("/contacto",methods=["GET","POST"])
 def contacto():
   form = SignupForm()
-  if form.validate_on_submit:
+  if form.validate_on_submit():
     nombre=form.name.data
     email=form.email.data
     password=form.password.data
 
+    print(nombre)
+    print(email)
+    print(password)
     return redirect(url_for("index"))
   
   return render_template("contacto.html",form=form)
