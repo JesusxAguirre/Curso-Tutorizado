@@ -60,9 +60,7 @@ def contacto():
     email=form.email.data
     password=form.password.data
 
-    print(nombre)
-    print(email)
-    print(password)
+    print(form.data[0:3])
     return redirect(url_for("index"))
   
   return render_template("contacto.html",form=form)
