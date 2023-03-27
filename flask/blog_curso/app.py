@@ -4,26 +4,32 @@ import os
 
 app = Flask(__name__)
 
-empleados = ["Ana","maria","sandra"]
+empleados = ["Ana", "maria", "sandra"]
 
 
 @app.route("/")
 def index():
 
-    return render_template("index.html",numero_empleados=len(empleados))
+    return render_template("index.html", numero_empleados=len(empleados))
 
 
 @app.route("/quienes")
 def quienes():
-    
+
     return render_template("quienes.html")
 
+
 @app.route("/posts")
-@app.route('/posts/<int:npost>')
-def posts(npost = 0):
-    return "este es el post: {}".format(npost)
+@app.route("/posts/<int:npost>")
+def posts(npost):
+    return render_template("posts.html", npost=npost)
 
 
-if __name__ == '__main__':
-    os.environ['FLASK_DEBUG'] = "development"
+@app.route("/contacto")
+def contacto():
+    return render_template("contacto.html")
+
+
+if __name__ == "__main__":
+    os.environ["FLASK_DEBUG"] = "development"
     app.run(debug=True)
