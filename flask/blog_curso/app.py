@@ -16,7 +16,7 @@ def index():
 @app.route("/quienes")
 def quienes():
     
-    return "Esta es la pagina de quienes somos"
+    return render_template("quienes.html")
 
 @app.route("/posts")
 @app.route('/posts/<int:npost>')
