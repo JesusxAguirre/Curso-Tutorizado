@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
 import os
 
 
@@ -25,8 +25,18 @@ def posts(npost):
     return render_template("posts.html", npost=npost)
 
 
-@app.route("/contacto")
+@app.route("/contacto", methods=["GET", "POST"])
 def contacto():
+    if request.method == "POST":
+        nombre = request.form["nombre"]
+        email = request.form["email"]
+        password = request.form["password"]
+        
+        
+        print(request.form)
+        
+        return redirect(url_for("index"))
+    
     return render_template("contacto.html")
 
 
