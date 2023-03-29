@@ -3,22 +3,39 @@
 {% block title %} Index {% endblock %}
 
 {% block content %}
-  <h1 class="text-gray-600 text-center text-xl">Esta es la pagina de contacto</h1>
-  <div class="container">
-    <form action="" method="post">
+<h1 class="text-gray-600 text-center text-xl">Esta es la pagina de contacto</h1>
+<div class="container">
+  <form action="" method="post" novalidate>
 
-      <label class="form-label" for="">Nombre</label>
-      <input type="text" class="form-control" id="nombre" name="nombre">
-      <br>
-      <label class="form-label" for="">Email</label>
-      <input type="text" class="form-control" id="email" name="email">
-      <br>
-      <label class="form-label" for="">Password</label>
-      <input type="password" class="form-control" id="password" name="password">
-      <br>
-      <button type="submit" name="envio_formulario" id="envio_formulario" class="btn btn-primary">Submit</button>
+    {{form.hidden_tag()}}
 
+    {{form.name.label}}
+    {{form.name(size=25)}}
+    {% for error in form.name.errors %}
 
-    </form>
-  </div>  
-  {% endblock %}
+    <span style="color: red;">{{error}}</span>
+    <br>
+    {% endfor %}
+    <br>
+    {{form.email.label}}
+    {{form.email}}
+    {% for error in form.email.errors %}
+
+    <span style="color: red;">{{error}}</span>
+    <br>
+    {% endfor %}
+    <br>
+    {{form.password.label}}
+    {{form.password}}
+    {% for error in form.password.errors %}
+
+    <span style="color: red;">{{error}}</span>
+    <br>
+    {% endfor %}
+    <br>
+
+    {{form.submit()}}
+
+  </form>
+</div>
+{% endblock %}

@@ -3,9 +3,31 @@
 {% block title %} Post {% endblock %}
 
 {% block content %}
-  <h1 class="text-gray-600 text-center text-xl">Esta es la pagina de los post</h1>
-  <div class="container">
-    <p>Este es es el post numero {{npost}}</p>
-  </div>
+<h1 class="text-gray-600 text-center text-xl">Esta es la pagina de los post</h1>
+<div class="container">
+  <form action="" method="post" novalidate>
 
-  {% endblock %}
+    {{form.hidden_tag()}}
+
+
+    {{form.titulo.label}}
+    {{form.titulo(size=15)}}
+    <br>
+    {% for error in form.titulo.errors %}
+    <span style="color: red">{{error}}</span>
+    {% endfor %}
+    <br>
+
+    {{form.contenido.label}}
+    {{form.contenido(size=200)}}
+    <br>
+    {% for error in form.contenido.errors %}
+    <span style="color: red"> {{error}} </span>
+    {% endfor %}
+    <br>
+  </form>
+
+
+</div>
+
+{% endblock %}
