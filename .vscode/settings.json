@@ -8,5 +8,11 @@
   ],
   "python.testing.pytestEnabled": false,
   "python.testing.unittestEnabled": true,
-
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.colorDecorators": true,
+    "editor.suggest.showColors": true,
+    "editor.suggest.showCustomcolors": true,
+    "editor.formatOnType": true
+  }
 }

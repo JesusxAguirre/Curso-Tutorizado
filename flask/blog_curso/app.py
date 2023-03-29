@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect
 import os
+from forms import SignupForm
 
 
 app = Flask(__name__)
@@ -27,16 +28,16 @@ def posts(npost):
 
 @app.route("/contacto", methods=["GET", "POST"])
 def contacto():
-    if request.method == "POST":
-        nombre = request.form["nombre"]
-        email = request.form["email"]
-        password = request.form["password"]
-        
-        
-        print(request.form)
-        
+
+    form = SignupForm()
+    if form.validate_on_submit:
+
+        nombre = form.name
+        email = form.email
+        password = form.password
+
         return redirect(url_for("index"))
-    
+
     return render_template("contacto.html")
 
 
