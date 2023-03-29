@@ -55,8 +55,8 @@ class LoginForm(FlaskForm):
 
 
 class RegistroForm(FlaskForm):
-    email = StringField(
-        "email",
+    usuario = StringField(
+        "usuario",
         validators=[DataRequired(),
                     Email()])
 
@@ -64,6 +64,11 @@ class RegistroForm(FlaskForm):
         "password",
         validators=[DataRequired(),
                     Length(max=12)]
+    )
+
+    nombre = StringField(
+        "nombre",
+        validators=[DataRequired(),Length(max=12)]
     )
     
     submit = SubmitField("registrar usuario")

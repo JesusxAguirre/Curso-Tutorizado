@@ -13,6 +13,8 @@ diccionario_post = []
 
 usuarios = []
 
+nombre_usuario = ""
+
 login = 0
 
 
@@ -20,6 +22,7 @@ login = 0
 def login():
     global usuarios
     global login
+    global nombre_usuario
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -27,32 +30,36 @@ def login():
         for usuario in usuarios:
             if usuario['usuario'] == form.email.data and usuario['password'] == form.password.data:
                 login = 1
-                return redirect(url_for("index"))
+                nombre_usuario = usuario['nombre']
+                return redirect(url_for("index"), nombre_usuario)
 
     return render_template("login.html", form=form)
 
 
-@app.route("/registrarse")
+@app.route("/registrarse", methods=["GET", "POST"])
 def registrar():
     global usuarios
     form = RegistroForm()
 
     if form.validate_on_submit():
         usuarios.append({"usuario": form.email.data,
-                        "password": form.password.data})
+                        "password": form.password.data,
+                         "nombre": form.nombre.data})
 
         return redirect(url_for('login'))
+    else:
+        pass
 
     return render_template("registro_usuarios.html", form=form)
 
 
 @app.route("/inicio")
-def index():
+def index(nombre_usuario):
     global login
-    if login:
+    if login == 1:
         global diccionario_post
 
-        return render_template("index.html", diccionario_posts=diccionario_post)
+        return render_template("index.html", diccionario_posts=diccionario_post, nombre_usuario=nombre_usuario)
     else:
         return redirect(url_for("login"))
 
@@ -60,7 +67,7 @@ def index():
 @app.route("/quienes")
 def quienes():
     global login
-    if login:
+    if login == 1:
         return render_template("quienes.html")
     else:
         return redirect(url_for("login"))
