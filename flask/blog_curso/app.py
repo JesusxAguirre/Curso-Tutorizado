@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from forms import SignupForm, PostForm
+from forms import SignupForm, PostForm, LoginForm
 import os
 
 app = Flask(__name__)
@@ -11,18 +11,31 @@ empleados = ["Ana", "maria", "sandra"]
 
 diccionario_post = []
 
+datos_usuario = {}
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
+def login():
+    global datos_usuario
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        datos_usuario['usuario'] = form.email.data
+        datos_usuario['clave'] = form.password.data
+
+
+        print(datos_usuario)
+        
+    return render_template("login.html",form = form)
+
+
+@app.route("/inicio")
 def index():
     global diccionario_post
 
     return render_template("index.html", diccionario_posts=diccionario_post)
 
 
-@app.route("/login")
-def login():
 
-    return render_template("login.html")
 
 
 @app.route("/quienes")

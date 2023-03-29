@@ -3,6 +3,7 @@ from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, Email, Length
 from wtforms.widgets import TextArea
 
+
 class SignupForm(FlaskForm):
 
     name = StringField(
@@ -30,8 +31,24 @@ class PostForm(FlaskForm):
                     Length(max=15)])
 
     contenido = StringField("contenido",
-                            widget = TextArea(),
+                            widget=TextArea(),
                             validators=[DataRequired(),
                                         Length(max=200)])
-    
+
     submit = SubmitField("enviar_post")
+
+
+class LoginForm(FlaskForm):
+    
+    email = StringField(
+        "email",
+        validators=[DataRequired(),
+                    Email()])
+
+    password = PasswordField(
+        "password",
+        validators=[DataRequired(),
+                    Length(max=12)]
+    )
+    
+    submit = SubmitField("iniciar_sesion")
