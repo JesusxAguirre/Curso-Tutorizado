@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Email, Length
 from wtforms.widgets import TextArea
 
@@ -71,4 +71,6 @@ class RegistroForm(FlaskForm):
         validators=[DataRequired(),Length(max=12)]
     )
     
+    remember_me = BooleanField("Recuerdame")
+
     submit = SubmitField("registrar usuario")

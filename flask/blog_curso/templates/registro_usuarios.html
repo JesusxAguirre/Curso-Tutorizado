@@ -71,6 +71,16 @@
 
 
                                                         </div>
+                                                        <div id="grupo__recuerdame" class="col-sm col-md-6 ">
+                                                            <div class="relative">
+                                                                
+                                                                {{form.remember_me()}} {{form.remember_me.label}}
+
+
+                                                            </div>
+
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,7 +88,7 @@
                                             <div class="modal-footer">
                                                 <a class="btn btn-secondary" href="{{url_for('login')}}">
                                                     Regresar</a>
-                                                {{form.submit}}
+                                                {{form.submit()}}
                                             </div>
 
                                         </form>

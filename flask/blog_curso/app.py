@@ -1,11 +1,15 @@
 from flask import Flask, render_template, url_for, request, redirect
 from forms import SignupForm, PostForm, LoginForm, RegistroForm
 import os
+from flask_login import LoginManager
+
 
 app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = "e23895acc525f92e886e9fe425046e0743855fbc038a70067540742c9fd34179"
+
+login_manager = LoginManager(app)
 
 empleados = ["Ana", "maria", "sandra"]
 
@@ -16,6 +20,7 @@ usuarios = []
 nombre_usuario = ""
 
 login = 0
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -31,7 +36,7 @@ def login():
             if usuario['usuario'] == form.email.data and usuario['password'] == form.password.data:
                 login = 1
                 nombre_usuario = usuario['nombre']
-                return redirect(url_for("index"), nombre_usuario)
+                return redirect(url_for("index"))
 
     return render_template("login.html", form=form)
 
@@ -42,7 +47,7 @@ def registrar():
     form = RegistroForm()
 
     if form.validate_on_submit():
-        usuarios.append({"usuario": form.email.data,
+        usuarios.append({"usuario": form.usuario.data,
                         "password": form.password.data,
                          "nombre": form.nombre.data})
 
@@ -54,7 +59,8 @@ def registrar():
 
 
 @app.route("/inicio")
-def index(nombre_usuario):
+def index():
+    global nombre_usuario
     global login
     if login == 1:
         global diccionario_post
