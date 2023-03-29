@@ -19,6 +19,12 @@ def index():
     return render_template("index.html", diccionario_posts=diccionario_post)
 
 
+@app.route("/login")
+def login():
+
+    return render_template("login.html")
+
+
 @app.route("/quienes")
 def quienes():
 

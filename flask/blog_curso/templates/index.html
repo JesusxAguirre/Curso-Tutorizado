@@ -9,11 +9,11 @@
   {% for post in diccionario_posts %}
   <div class="card mt-2 " style="width: 18rem;">
     <div class="card-header bg-primary text-white">
-      {{post['titulo']}}
+      {{post.titulo}}
     </div>
     <div class="card-body">
      
-      <p class="card-text">{{post['contenido']}}</p>
+      <p class="card-text">{{post.contenido}}</p>
     </div>
   </div>
   {% endfor %}

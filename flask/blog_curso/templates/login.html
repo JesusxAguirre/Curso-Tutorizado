@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>{% block title %} {% endblock %}</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+
+
+</head>
+
+<body class="h-100" style="background-color: #ddd;">
+
+<div class="container-fluid ">
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-xl-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <div class="card-body p-md-5 mx-md-4">
+                    <div class="text-center">
+                      <img class="rounded-circle" src="{{url_for('static', filename='img/flask.png')}}" style="width: 185px;" alt="logo">
+                      <h4 class="mt-1 mb-5 pb-1">¡Bienvenido al sistema de flask   !</h4>
+                    </div>
+                    <form id="formulario" method="post" action="?url=login">
+                      <div class="col-sm mb-4" id="grupo__nombre">
+                        <div class="relative">
+                          <i class="input-icon fs-5"></i>
+                          <label class="form-label" for="">Usuario</label>
+                          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="example@gmail.com" />
+                          <label class="form-label mt-3" for="">Clave</label>
+                          <input type="password" id="clave" name="clave" class="form-control" placeholder="******" />
+                        </div>
+                        <p class="text-danger d-none">Debes escribir al menos 4 letras sin numeros ni caracteres especiales</p>
+                      </div>
+
+                      <div class="text-center pt-1 mb-5 pb-1">
+                        <button name="login" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">¡Iniciar sesion!</button>
+                        <br> <a class="text-dark mb-3" href="?url=registro">¿No tienes usuario? Registrate</a>
+                      </div>
+
+                      <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
+                    </form>
+
+
+                  </div>
+                </div>
+                <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                  <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                    <h4 class="mb-4 text-center"> Info </h4>
+                    <p class="small mb-0">Este es un sistema desarrollado con flask</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+  crossorigin="anonymous"></script>
+
+</body>
+
+</html>

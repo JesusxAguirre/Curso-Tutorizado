@@ -7,45 +7,53 @@
   <title>{% block title %} {% endblock %}</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
 
-  <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body style="background-color: #ddd;" >
-  <div class="flex flex-1 justify-end md:justify-center">
+<body class="h-100" style="background-color: #ddd;">
 
-    <nav class="pointer-events-auto hidden md:block">
-      <ul
-        class="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <li><a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-            href="{{url_for('index')}}">Inicio</a></li>
-        <li><a class="relative block px-3 py-2 transition text-teal-500 dark:text-teal-400"
-            href="{{url_for('posts')}}">Articulos<span
-              class="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"></span></a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Menu</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{url_for('index')}}">Inicio</a>
         </li>
-        <li><a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-            href="{{url_for('quienes')}}">Quienes somos</a></li>
-
-        <li><a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-            href="{{url_for('contacto')}}">Contacto</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('posts')}}">Articulos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('quienes')}}">Quienes somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('contacto')}}">Contacto</a>
+        </li>
       </ul>
-    </nav>
-  </div>
-
- 
-
-{% block content %}
+    </div>
+  </nav>
+  
+  
 
 
-
+  {% block content %}
 
 
 
-{% endblock %}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+
+  {% endblock %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
 
 </body>
 

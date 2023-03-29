@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, Email, Length
-
+from wtforms.widgets import TextArea
 
 class SignupForm(FlaskForm):
 
@@ -30,6 +30,7 @@ class PostForm(FlaskForm):
                     Length(max=15)])
 
     contenido = StringField("contenido",
+                            widget = TextArea(),
                             validators=[DataRequired(),
                                         Length(max=200)])
     
