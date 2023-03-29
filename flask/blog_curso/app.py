@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from forms import SignupForm,PostForm
+from forms import SignupForm, PostForm
 import os
 
 app = Flask(__name__)
@@ -13,9 +13,10 @@ diccionario_post = []
 
 
 @app.route("/")
-def index(diccionario_posts):
+def index():
+    global diccionario_post
 
-    return render_template("index.html", posts=diccionario_post)
+    return render_template("index.html", diccionario_posts=diccionario_post)
 
 
 @app.route("/quienes")
@@ -24,9 +25,9 @@ def quienes():
     return render_template("quienes.html")
 
 
-@app.route("/posts")
-@app.route("/posts/<int:npost>")
-def posts(npost):
+@app.route("/posts", methods=["GET", "POST"])
+@app.route("/posts/<int:npost>", methods=["GET", "POST"])
+def posts():
     global diccionario_post
     form = PostForm()
 
@@ -34,9 +35,10 @@ def posts(npost):
         diccionario_post.append(
             {"titulo": form.titulo.data, "contenido": form.contenido.data})
 
-        redirect(url_for("index",diccionario_post))
+ 
+        return redirect(url_for("index"))
 
-    return render_template("posts.html", npost=npost)
+    return render_template("posts.html", form=form)
 
 
 @app.route("/contacto", methods=["GET", "POST"])

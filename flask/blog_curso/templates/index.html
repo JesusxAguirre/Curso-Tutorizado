@@ -5,6 +5,16 @@
   {% block content %}
   <h1 class="text-gray-600 text-center text-xl">Este es el mensaje desde la pagina creada</h1>
 
-  <p>este es el numero de empleados: {{numero_empleados}}</p>
-
+  <p>Estos son los post de hoy  </p>
+  {% for post in diccionario_posts %}
+  <div class="card mt-2 " style="width: 18rem;">
+    <div class="card-header bg-primary text-white">
+      {{post['titulo']}}
+    </div>
+    <div class="card-body">
+     
+      <p class="card-text">{{post['contenido']}}</p>
+    </div>
+  </div>
+  {% endfor %}
 {% endblock %}
