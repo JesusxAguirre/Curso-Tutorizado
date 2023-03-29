@@ -39,7 +39,22 @@ class PostForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    
+
+    email = StringField(
+        "email",
+        validators=[DataRequired(),
+                    Email()])
+
+    password = PasswordField(
+        "password",
+        validators=[DataRequired(),
+                    Length(max=12)]
+    )
+
+    submit = SubmitField("iniciar_sesion")
+
+
+class RegistroForm(FlaskForm):
     email = StringField(
         "email",
         validators=[DataRequired(),
@@ -51,4 +66,4 @@ class LoginForm(FlaskForm):
                     Length(max=12)]
     )
     
-    submit = SubmitField("iniciar_sesion")
+    submit = SubmitField("registrar usuario")

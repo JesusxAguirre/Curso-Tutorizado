@@ -27,49 +27,48 @@
                                 <div class="col-lg-12">
                                     <div class="card-body p-md-5 mx-md-4">
                                         <div class="text-center">
-                                            <img class="rounded-circle" src="assets/img/composer.jpg"
+                                            <img class="rounded-circle"
+                                                src="{{url_for('static', filename='img/flask.png')}}"
                                                 style="width: 185px;" alt="logo">
-                                            <h4 class="mt-1 mb-5 pb-1">¡Registrate en el sistema de composer!</h4>
+                                            <h4 class="mt-1 mb-5 pb-1">¡Registrate en el sistema de flask!</h4>
                                         </div>
-                                        <form id="formulario" action="?url=registro" method="POST">
+                                        <form id="formulario" method="POST" novalidate>
+                                            {{form.hidden_tag()}}
                                             <div class="container-fluid">
                                                 <div class="row mt-2">
                                                     <div class="mb-3 row">
 
                                                         <div id="grupo__usuario" class="col-sm col-md-6 ">
                                                             <div class="relative">
-                                                                <label class="form-label fw-bold">Usuario</label>
-                                                                <i class="input-icon fs-5"></i>
-                                                                <input id="usuario" placeholder=" example@gmail.com"
-                                                                    name="usuario" class="form-control">
+                                                                {{form.usuario.label}}
+                                                                {{form.usuario}}
+                                                                {% for error in form.usuario.errors %}
+                                                                <p id="mensaje_usuario" class="text-danger ">{{error}}
+                                                                </p>
+                                                                {% endfor %}
                                                             </div>
-                                                            <p id="mensaje_usuario" class="text-danger d-none">El
-                                                                formato de correo es ejemplo@gmail.com </p>
+                                                            <div id="grupo__clave" class="col-sm col-md-6 ">
+                                                                <div class="relative">
+                                                                    {{form.password.label}}
+                                                                    {{form.password}}
+                                                                    {% for error in form.password.errors %}
+                                                                    <p class="text-danger">{{error}}</p>
+                                                                    {% endfor %}
 
-                                                        </div>
-                                                        <div id="grupo__clave" class="col-sm col-md-6 ">
-                                                            <div class="relative">
-                                                                <label class="form-label fw-bold">Clave</label>
-                                                                <i class="input-icon fs-5"></i>
-                                                                <input id="clave" type="password" placeholder="******"
-                                                                    name="clave" class="form-control">
+
+                                                                </div>
+
+
                                                             </div>
-                                                            <p class="text-danger d-none">La clave debe contener de 7 a
-                                                                12 digitos </p>
-                                                            <input type="hidden" name="token"
-                                                                value="<?php echo $_SESSION['token'] ?>">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div id="respuesta">
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a class="btn btn-secondary" href="?url=login"> Regresar</a>
-                                                <button type="submit" id="registrar" name="registrar"
-                                                    class="btn btn-primary">Enviar</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-secondary" href="{{url_for('login')}}">
+                                                        Regresar</a>
+                                                    {{form.submit}}
+                                                </div>
 
                                         </form>
                                     </div>

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from forms import SignupForm, PostForm, LoginForm
+from forms import SignupForm, PostForm, LoginForm, RegistroForm
 import os
 
 app = Flask(__name__)
@@ -11,37 +11,59 @@ empleados = ["Ana", "maria", "sandra"]
 
 diccionario_post = []
 
-datos_usuario = {}
+usuarios = []
 
-@app.route("/", methods=["GET","POST"])
+login = 0
+
+
+@app.route("/", methods=["GET", "POST"])
 def login():
-    global datos_usuario
+    global usuarios
+    global login
     form = LoginForm()
 
     if form.validate_on_submit():
-        datos_usuario['usuario'] = form.email.data
-        datos_usuario['clave'] = form.password.data
+
+        for usuario in usuarios:
+            if usuario['usuario'] == form.email.data and usuario['password'] == form.password.data:
+                login = 1
+                return redirect(url_for("index"))
+
+    return render_template("login.html", form=form)
 
 
-        print(datos_usuario)
-        
-    return render_template("login.html",form = form)
+@app.route("/registrarse")
+def registrar():
+    global usuarios
+    form = RegistroForm()
+
+    if form.validate_on_submit():
+        usuarios.append({"usuario": form.email.data,
+                        "password": form.password.data})
+
+        return redirect(url_for('login'))
+
+    return render_template("registro_usuarios.html", form=form)
 
 
 @app.route("/inicio")
 def index():
-    global diccionario_post
+    global login
+    if login:
+        global diccionario_post
 
-    return render_template("index.html", diccionario_posts=diccionario_post)
-
-
-
+        return render_template("index.html", diccionario_posts=diccionario_post)
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/quienes")
 def quienes():
-
-    return render_template("quienes.html")
+    global login
+    if login:
+        return render_template("quienes.html")
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/posts", methods=["GET", "POST"])
@@ -54,7 +76,6 @@ def posts():
         diccionario_post.append(
             {"titulo": form.titulo.data, "contenido": form.contenido.data})
 
- 
         return redirect(url_for("index"))
 
     return render_template("posts.html", form=form)
