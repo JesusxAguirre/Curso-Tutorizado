@@ -18,7 +18,7 @@ diccionario_post = []
 
 @app.route("/", methods=["GET", "POST"])
 def login():
-    print(users)
+
     if current_user.is_authenticated:
         return redirect(url_for("index"))
     
@@ -28,7 +28,7 @@ def login():
         user = get_user(form.email.data)
    
         if user is not None and (user.check_password(form.password.data)) == form.password.data:
-            login_user(user, remember=form.remember_me.data)cd
+            login_user(user, remember=form.remember_me.data)
 
             next_page = request.args.get("next")
 
