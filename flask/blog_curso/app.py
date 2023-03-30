@@ -12,6 +12,7 @@ app.config['SECRET_KEY'] = "e23895acc525f92e886e9fe425046e0743855fbc038a70067540
 
 login_manager = LoginManager(app)
 
+login_manager.login_view = "error"
 
 diccionario_post = []
 
@@ -124,6 +125,12 @@ def load_user(user_id):
         if user.id == int(user_id):
             return user
     return None
+
+
+@app.route("/error")
+def error():
+
+    return render_template("error_login.html")
 
 
 if __name__ == "__main__":
