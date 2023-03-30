@@ -51,6 +51,8 @@ class LoginForm(FlaskForm):
                     Length(max=12)]
     )
 
+    remember_me = BooleanField("Recuerdame")
+
     submit = SubmitField("iniciar_sesion")
 
 
@@ -71,6 +73,6 @@ class RegistroForm(FlaskForm):
         validators=[DataRequired(),Length(max=12)]
     )
     
-    remember_me = BooleanField("Recuerdame")
+
 
     submit = SubmitField("registrar usuario")

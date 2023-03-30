@@ -48,16 +48,23 @@
                                                     {% for error in form.password.errors %}
                                                     <p class="text-danger ">{{error}}</p>
                                                     {% endfor %}
-                                                    
+
                                                 </div>
 
                                             </div>
+                                            <div id="grupo__recuerdame" class="col-sm col-md-6 ">
+                                                <div class="relative">
 
-                                            <div class="text-center pt-1 mb-5 pb-1">
-                                                {{form.submit()}}
-                                                <br> <a class="text-dark mb-3" href="{{url_for('registrar')}}">¿No tienes usuario?
-                                                    Registrate</a>
-                                            </div>
+                                                    {{form.remember_me()}} {{form.remember_me.label}}
+
+
+                                                </div>
+                                                <div class="text-center pt-1 mb-5 pb-1">
+                                                    {{form.submit()}}
+                                                    <br> <a class="text-dark mb-3" href="{{url_for('registrar')}}">¿No
+                                                        tienes usuario?
+                                                        Registrate</a>
+                                                </div>
 
 
                                         </form>
