@@ -37,14 +37,14 @@
                                             <div class="col-sm mb-4" id="grupo__nombre">
                                                 <div class="relative">
                                                     <i class="input-icon fs-5"></i>
-                                                    {{form.email.label}}
-                                                    {{form.email}}
+                                                    {{form.email.label(class="form-label text-capitalize")}}
+                                                    {{form.email(class="form-control")}}
                                                     {% for error in form.email.errors %}
                                                     <p class="text-danger ">{{error}}</p>
                                                     {% endfor %}
                                                     <br>
-                                                    {{form.password.label}}
-                                                    {{form.password(size=12)}}
+                                                    {{form.password.label(class="form-label text-capitalize")}}
+                                                    {{form.password(size=12,class="form-control")}}
                                                     {% for error in form.password.errors %}
                                                     <p class="text-danger ">{{error}}</p>
                                                     {% endfor %}
@@ -53,15 +53,17 @@
 
                                             </div>
                                             <div id="grupo__recuerdame" class="col-sm col-md-6 ">
-                                                <div class="relative">
+                                                <div class="form-check">
 
-                                                    {{form.remember_me()}} {{form.remember_me.label}}
+                                                    {{form.remember_me(class="form-check-input")}}
+                                                    {{form.remember_me.label(class="form-check-label")}}
 
 
                                                 </div>
                                             </div>
                                             <div class="text-center pt-1 mb-5 pb-1">
-                                                {{form.submit()}}
+                                                {{form.submit(class="btn btn-primary btn-block fa-lg gradient-custom-2
+                                                mb-3")}}
                                                 <br> <a class="text-dark mb-3" href="{{url_for('registrar')}}">¿No
                                                     tienes usuario?
                                                     Registrate</a>
