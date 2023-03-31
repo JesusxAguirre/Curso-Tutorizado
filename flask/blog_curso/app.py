@@ -1,49 +1,62 @@
 from flask import Flask, render_template, url_for, request, redirect
+from flask_sqlalchemy import SQLAlchemy
 from forms import SignupForm, PostForm, LoginForm, RegistroForm
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from models import users, get_user, User
+from models import User, db, login_manager
 
-import os   
+import os
 
 app = Flask(__name__)
 
-
 app.config['SECRET_KEY'] = "e23895acc525f92e886e9fe425046e0743855fbc038a70067540742c9fd34179"
 
-login_manager = LoginManager(app)
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:admin123@localhost:5432/flask-app-post'
+
+app.config['SQLALCHEMY_TRACK_MODIFICATION']= False
+
+db.init_app(app)
+
+login_manager.init_app(app)
 
 login_manager.login_view = "error"
 
-diccionario_post = []
+@app.before_first_request
+def create_table():
+    db.create_all()
 
+
+diccionario_post = []
 
 @app.route("/", methods=["GET", "POST"])
 def login():
 
     if current_user.is_authenticated:
         return redirect(url_for("index"))
-    
+
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = get_user(form.email.data)
-   
-        if user is not None and (user.check_password(form.password.data)) == form.password.data:
-            login_user(user, remember=form.remember_me.data)
+        email = request.form['email']
 
-            next_page = request.args.get("next")
+        user = User.query.filter_by(email = email).first()
 
-            if not next_page:
-                next_page = url_for("index")
 
-            return redirect(next_page)
+        if user is not None and user.check_password(request.form['password']):
+
+            login_user(user)
+
+            return redirect(url_for('index'))
+
+
 
     return render_template("login.html", form=form)
 
 
 @app.route("/registrarse", methods=["GET", "POST"])
 def registrar():
-    global usuarios
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    
     form = RegistroForm()
 
     if form.validate_on_submit():
@@ -51,16 +64,19 @@ def registrar():
         password = form.password.data
         nombre = form.nombre.data
 
-        user = User(len(users) + 1, nombre, email, password)
+        user = User(email = email, name = nombre)
 
-        users.append(user)
+        user.set_password(password)
 
-        login_user(user, remember=True)
+        #COMENTANDO LOGIN AUTOMATICO AL REGISTRARSE
+        #login_user(user, remember=True)
+        
+        db.session.add(user)
 
-        return redirect(url_for('index'))
-    else:
-        pass
+        db.session.commit()
 
+        return redirect(url_for('login'))
+   
     return render_template("registro_usuarios.html", form=form)
 
 
@@ -117,14 +133,6 @@ def logout():
     logout_user()
 
     return redirect(url_for("login"))
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    for user in users:
-        if user.id == int(user_id):
-            return user
-    return None
 
 
 @app.route("/error")

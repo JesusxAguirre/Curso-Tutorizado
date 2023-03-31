@@ -40,8 +40,8 @@
 
                                                         <div id="grupo__usuario" class="col-sm col-md-6 ">
                                                             <div class="relative">
-                                                                {{form.nombre.label}}
-                                                                {{form.nombre}}
+                                                                {{form.nombre.label(class="form-label fw-bold text-capitalize")}}
+                                                                {{form.nombre(class="form-control",size=12,placeholder="Jesus")}}
                                                                 {% for error in form.nombre.errors %}
                                                                 <p id="mensaje_usuario" class="text-danger ">{{error}}
                                                                 </p>
@@ -50,8 +50,8 @@
                                                         </div>
                                                         <div id="grupo__usuario" class="col-sm col-md-6 ">
                                                             <div class="relative">
-                                                                {{form.usuario.label}}
-                                                                {{form.usuario}}
+                                                                {{form.usuario.label(class="form-label fw-bold text-capitalize")}}
+                                                                {{form.usuario(class="form-control",placeholder=" example@gmail.com")}}
                                                                 {% for error in form.usuario.errors %}
                                                                 <p id="mensaje_usuario" class="text-danger ">{{error}}
                                                                 </p>
@@ -60,8 +60,8 @@
                                                         </div>
                                                         <div id="grupo__clave" class="col-sm col-md-6 ">
                                                             <div class="relative">
-                                                                {{form.password.label}}
-                                                                {{form.password}}
+                                                                {{form.password.label(class="form-label fw-bold text-capitalize")}}
+                                                                {{form.password(class="form-control")}}
                                                                 {% for error in form.password.errors %}
                                                                 <p class="text-danger">{{error}}</p>
                                                                 {% endfor %}
@@ -82,7 +82,7 @@
                                             <div class="modal-footer">
                                                 <a class="btn btn-secondary" href="{{url_for('login')}}">
                                                     Regresar</a>
-                                                {{form.submit()}}
+                                                {{form.submit(class="btn btn-primary")}}
                                             </div>
 
                                         </form>
