@@ -42,13 +42,13 @@ class LoginForm(FlaskForm):
 
     email = StringField(
         "email",
-        validators=[DataRequired(),
-                    Email()])
+        validators=[DataRequired("Este campo no puede estar vacio"),
+                    Email("Digita un email valido")])
 
     password = PasswordField(
         "password",
-        validators=[DataRequired(),
-                    Length(max=12)]
+        validators=[DataRequired("Este campo no puede estar vacio"),
+                    Length(min=8,max=12)]
     )
 
     remember_me = BooleanField("Recuerdame")

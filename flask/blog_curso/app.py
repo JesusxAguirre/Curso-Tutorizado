@@ -1,8 +1,10 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect,flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import SignupForm, PostForm, LoginForm, RegistroForm
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User, db, login_manager
+from sanitizar import sanitizar_caracteres
+
 
 import os
 
@@ -33,6 +35,9 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for("index"))
 
+
+
+
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -46,7 +51,7 @@ def login():
             login_user(user)
 
             return redirect(url_for('index'))
-
+        
 
 
     return render_template("login.html", form=form)
@@ -60,10 +65,13 @@ def registrar():
     form = RegistroForm()
 
     if form.validate_on_submit():
-        email = form.usuario.data
+        
+        
+        email = sanitizar_caracteres(form.usuario.data)        
         password = form.password.data
-        nombre = form.nombre.data
-
+        nombre = sanitizar_caracteres(form.nombre.data)
+        nombre = nombre.capitalize()
+       
         user = User(email = email, name = nombre)
 
         user.set_password(password)
@@ -72,9 +80,9 @@ def registrar():
         #login_user(user, remember=True)
         
         db.session.add(user)
-
+        
         db.session.commit()
-
+        
         return redirect(url_for('login'))
    
     return render_template("registro_usuarios.html", form=form)
@@ -139,6 +147,8 @@ def logout():
 def error():
 
     return render_template("error_login.html")
+
+
 
 
 if __name__ == "__main__":
